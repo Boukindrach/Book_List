@@ -1,5 +1,6 @@
 <template>
   <Header />
+  <Body />
 </template>
 
 <script>
