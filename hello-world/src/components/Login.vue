@@ -4,9 +4,10 @@
             <div class="col">
                 <h1 class="mt-5">Login</h1>
                 <hr>
-                <form-tag>
+                <form-tag @myevent="sumbitHandler">
 
                     <text-input
+                        v-model="email"
                         label="Email"
                         type="email"
                         name="email"
@@ -14,6 +15,7 @@
                     </text-input>
 
                     <text-input
+                        v-model="password"
                         label="Password"
                         type="password"
                         name="password"
@@ -37,6 +39,17 @@ export default {
     components: {
         FormTag,
         TextInput,
+    },
+    data () {
+        return {
+            email: "",
+            password: ""
+        }
+    },
+    methods: {
+        sumbitHandler() {
+            console.log("SubmitHandler called success")
+        }
     },
     mounted() {
         (function () {
