@@ -41,14 +41,14 @@ func (app *application) serve() error {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		var payload struct {
 			Okay    bool   `json:"okay"`
-			Messege string `json:"message"`
+			Message string `json:"message"`
 		}
 		payload.Okay = true
-		payload.Messege = "Hello, World"
+		payload.Message = "Hello, world"
 
 		out, err := json.MarshalIndent(payload, "", "\t")
 		if err != nil {
-			app.errorLog.PrintIn(err)
+			app.errorLog.Println(err)
 		}
 
 		w.Header().Set("Content-Type", "application/json")
