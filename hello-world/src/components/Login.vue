@@ -4,7 +4,7 @@
             <div class="col">
                 <h1 class="mt-5">Login</h1>
                 <hr>
-                <form-tag @myevent="sumbitHandler" name="myform" event="myevent">
+                <form-tag @myevent="submitHandler" name="myform" event="myevent">
 
                     <text-input
                         v-model="email"
@@ -40,15 +40,35 @@ export default {
         FormTag,
         TextInput,
     },
-    data () {
+    data() {
         return {
             email: "",
-            password: ""
+            password: "",
         }
     },
     methods: {
-        sumbitHandler() {
-            console.log("SubmitHandler called success")
+        submitHandler() {
+            console.log("submitHandler called - success!");
+
+            const payload = {
+                email: this.email,
+                password: this.password,
+            }
+
+            const requestOptions = {
+                method: "POST",
+                body: JSON.stringify(payload),
+            }
+
+            fetch("http://localhost:8081/users/login", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.error) {
+                    console.log("Error:", data.message);
+                } else {
+                    console.log(data);
+                }
+            })
         }
     }
 }
